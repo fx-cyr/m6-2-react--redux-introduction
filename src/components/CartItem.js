@@ -1,16 +1,21 @@
 import React from "react";
 import styled from "styled-components";
+import { removeItem } from "../actions";
+import { useDispatch } from "react-redux";
 
-const CartItem = () => {
+const CartItem = ({ item, id }) => {
+  console.log(item.id);
+  const itemId = item.id;
+  const dispatch = useDispatch();
   return (
     <Wrapper>
       <TopSection>
-        <Title>This Item</Title>
-        <CloseBtn>X</CloseBtn>
+        <Title>{item.title}</Title>
+        <CloseBtn onClick={() => dispatch(removeItem({ id }))}>X</CloseBtn>
       </TopSection>
 
       <Quantity>
-        Quantity:<Count>0</Count>
+        Quantity:<Count>{item.quantity}</Count>
       </Quantity>
     </Wrapper>
   );
