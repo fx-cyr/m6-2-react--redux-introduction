@@ -7,6 +7,12 @@ import { useSelector } from "react-redux";
 const Cart = () => {
   const storeItems = useSelector(getStoreItemArray);
   console.log(storeItems);
+  let total = 0;
+  storeItems.forEach((item) => {
+    total += item.price * item.quantity;
+    return total;
+  });
+
   return (
     <>
       <Wrapper>
@@ -19,7 +25,7 @@ const Cart = () => {
 
         <TotalContainer>
           <TotalAmount>
-            Total: <Bold>$0.00:</Bold>{" "}
+            Total: <Bold>{total}</Bold>{" "}
           </TotalAmount>
           <Button>Purchase</Button>
         </TotalContainer>
